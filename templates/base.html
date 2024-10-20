@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title or 'Te Waihora Farm Management Simulator' }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+        .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Te Waihora FMS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item{% if request.path == url_for('home') %} active{% endif %}">
+                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item{% if request.path == url_for('mobs') %} active{% endif %}">
+                        <a class="nav-link" href="{{ url_for('mobs') }}">Mobs</a>
+                    </li>
+                    <li class="nav-item{% if request.path == url_for('stock') %} active{% endif %}">
+                        <a class="nav-link" href="{{ url_for('stock') }}">Stock</a>
+                    </li>
+                    <li class="nav-item{% if request.path == url_for('paddocks') %} active{% endif %}">
+                        <a class="nav-link" href="{{ url_for('paddocks') }}">Paddocks</a>
+                    </li>
+                </ul>
+                <span class="navbar-text text-white ml-auto">
+                    Current Date: {{ session['curr_date'] }}
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer bg-dark text-white p-3">
+        <div class="container text-center">
+            &copy; {{ current_year }} Te Waihora Farm Management Simulator
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

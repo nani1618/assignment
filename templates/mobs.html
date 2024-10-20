@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">Mobs</h1>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Mob Name</th>
+            <th>Paddock</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mob in mobs %}
+        <tr>
+            <td>{{ mob.name }}</td>
+            <td>{{ mob.paddock_name if mob.paddock_name else 'Unassigned' }}</td>
+            <td class="text-center">
+                <a href="{{ url_for('move_mob', mob_id=mob.id) }}" class="btn btn-sm btn-secondary">Move Mob</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

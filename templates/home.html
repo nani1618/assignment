@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to Te Waihora FMS</h1>
+    <p class="lead">Efficiently manage your farm's stock and pasture with our simulator.</p>
+    <hr class="my-4">
+    <img src="{{ url_for('static', filename='images/farm.png') }}" class="img-fluid" alt="Farm Image">
+    <p class="mt-4">Te Waihora Farm Management Simulator (FMS) helps farmers simulate stock management, ensuring optimal pasture levels and healthy livestock.</p>
+</div>
+{% endblock %}
+

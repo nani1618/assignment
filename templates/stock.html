@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">Stock</h1>
+{% for mob in mobs %}
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">
+        <h3>{{ mob.name }}</h3>
+        <p>
+            Paddock: {{ mob.paddock_name if mob.paddock_name else 'Unassigned' }}<br>
+            Number of Stock: {{ mob.stock_count }}<br>
+            Average Weight: {{ mob.average_weight|round(1) }} kg
+        </p>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Animal ID</th>
+                    <th>Age (years)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for animal in mob.animals %}
+                <tr>
+                    <td>{{ animal.id }}</td>
+                    <td>{{ animal.age|round(1) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">Move Mob</h1>
+<p><strong>Mob:</strong> {{ mob.name }}</p>
+<form action="{{ url_for('move_mob', mob_id=mob.id) }}" method="post">
+    <div class="form-group">
+        <label for="paddock_id">Select New Paddock:</label>
+        <select name="paddock_id" id="paddock_id" class="form-control" required>
+            {% for paddock in available_paddocks %}
+            <option value="{{ paddock.id }}" {% if paddock.id == mob.paddock_id %}selected{% endif %}>
+                {{ paddock.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Move Mob</button>
+    <a href="{{ url_for('mobs') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
+
